@@ -14,33 +14,46 @@ def query_sap_zt438():
 ##########################################################################################
 def query_eqpmnt_agg_status():
     return """
-    select T2.ID_ESTADO_EQUIPAMENTO,
-        T2.ID_MODELO_EQUIPAMENTO,
-        T2.ID_OPERACAO,
-        T2.ID_LOCAL,
-        Sum(1) as QTDE 
-    from 
+    SELECT t2.id_estado_equipamento,
+           t2.id_modelo_equipamento,
+           t2.id_operacao,
+           t2.id_local,
+           SUM(1) AS qtde
+    FROM 
         (
-        select T1.*,
-            ROW_NUMBER() 
-        over 
-            (
-            partition by T1.ID_EQUIPAMENTO 
-            order by T1.DH_HISTORICO_EQUIPAMENTO Desc, T1.ID_HISTORICO_EQUIPAMENTO Desc
-            ) as ROWNUMBER 
-        from PRD_BI_DW.DW_ATLP_HISTORICO_EQPMNT_NET T1 
-        where T1.DH_HISTORICO_EQUIPAMENTO >= (SysDate - 365 * 3) 
-            and T1.DH_HISTORICO_EQUIPAMENTO < SysDate 
-            and T1.FL_STATUS_BI = 'A' 
-            and T1.NR_SERIE not Like 'ANT%'
-        ) T2 
-        inner join PRD_BI_DW.DW_ATLP_ENDERECAVEL_NET T3 on T2.ID_EQUIPAMENTO = T3.ID_EQUIPAMENTO and T3.FL_STATUS_BI = 'A' 
-        inner join PRD_BI_DW.DW_ATLP_MOD_EQUIP_TP_ENDER_NET T4 on T3.ID_MOD_EQUIP_TIPO_ENDER = T4.ID_MOD_EQUIP_TIPO_ENDER and T4.FL_STATUS_BI = 'A' and T4.FC_ENDERECAVEL_PRINCIPAL = 'S' 
-        inner join PRD_BI_DW.DW_ATLP_LOCAL_NET T5 on T2.ID_LOCAL = T5.ID_LOCAL and T5.FL_STATUS_BI = 'A' 
-        inner join PRD_BI_DW.DW_ATLP_TIPO_LOCAL_NET T6 on T5.ID_TIPO_LOCAL = T6.ID_TIPO_LOCAL and T6.ID_TIPO_LOCAL <> 6 and T6.FL_STATUS_BI = 'A' 
-    where T2.ID_ESTADO_EQUIPAMENTO = 2 
-        and T2.ROWNUMBER = 1 
-    group by T2.ID_ESTADO_EQUIPAMENTO, T2.ID_MODELO_EQUIPAMENTO, T2.ID_OPERACAO, T2.ID_LOCAL
+        SELECT t1.*,
+               ROW_NUMBER() 
+               OVER 
+                   (
+                   PARTITION BY t1.id_equipamento 
+                   ORDER BY t1.dh_historico_equipamento DESC, t1.id_historico_equipamento DESC
+                   ) AS rownumber
+        FROM prd_bi_dw.dw_atlp_historico_eqpmnt_net t1
+        WHERE t1.dh_historico_equipamento >= (SYSDATE - 365 * 3)
+              AND t1.dh_historico_equipamento < SYSDATE
+              AND t1.fl_status_bi = 'A'
+              AND t1.nr_serie NOT LIKE 'ANT%'
+        ) t2
+    INNER JOIN prd_bi_dw.dw_atlp_enderecavel_net t3 
+        ON t2.id_equipamento = t3.id_equipamento 
+        AND t3.fl_status_bi = 'A'
+    INNER JOIN prd_bi_dw.dw_atlp_mod_equip_tp_ender_net t4 
+        ON t3.id_mod_equip_tipo_ender = t4.id_mod_equip_tipo_ender 
+        AND t4.fl_status_bi = 'A' 
+        AND t4.fc_enderecavel_principal = 'S'
+    INNER JOIN prd_bi_dw.dw_atlp_local_net t5 
+        ON t2.id_local = t5.id_local 
+        AND t5.fl_status_bi = 'A'
+    INNER JOIN prd_bi_dw.dw_atlp_tipo_local_net t6 
+        ON t5.id_tipo_local = t6.id_tipo_local 
+        AND t6.id_tipo_local <> 6 
+        AND t6.fl_status_bi = 'A'
+    WHERE t2.id_estado_equipamento = 2
+          AND t2.rownumber = 1
+    GROUP BY t2.id_estado_equipamento, 
+             t2.id_modelo_equipamento, 
+             t2.id_operacao, 
+             t2.id_local
     """
 
 
