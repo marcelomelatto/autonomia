@@ -6,7 +6,8 @@ test:
 		python -m pytest -vv test_hello.py
 
 format:
-		black /workspaces/autonomia/01_autonomia_estoque/*.py
+		black /workspaces/autonomia/01_autonomia_equipamento/*.py
+		black /workspaces/autonomia/02_autonomia_consumo/*.py
 
 lint:
 		pylint --disable=R,C hello.py
