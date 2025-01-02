@@ -1,4 +1,4 @@
-query_true = '''
+query_true = """
 
 WITH 
 janela_reserva_query AS (
@@ -188,9 +188,9 @@ LEFT JOIN nota_cancelada t09 ON CAST(t01.num_reserva AS INT) = CAST(t09.num_pedi
     AND CAST(t01.num_nota_fiscal AS INT) = CAST(t09.num_nota_fiscal AS INT)
     AND CAST(t01.num_serie_nota_fiscal AS INT) = CAST(t09.num_serie_nota_fiscal AS INT))
 
-'''
+"""
 
-query = '''
+query = """
 WITH 
 janela_reserva_query AS (
     SELECT t1.*,
@@ -361,9 +361,9 @@ LEFT JOIN monitoramento_entrega t08
 LEFT JOIN nota_cancelada t09
     ON CAST(t01.num_reserva AS INT) = CAST(t09.num_pedido AS INT)
 
-'''
+"""
 
-query_MB51 = '''
+query_MB51 = """
     select distinct
         t1.dat_lancamento_documento as mb51_dat_lancamento_documento,
         t1.num_conta_fornecedor     as mb51_num_conta_fornecedor,
@@ -375,9 +375,9 @@ query_MB51 = '''
     and t1.dat_ref >= '20220101' 
     and t1.dat_referencia >= '202201'
     and t1.num_reserva_dependentes <> ''
-'''
+"""
 
-vlocal = '''
+vlocal = """
     SELECT cd_local_sap,
            id_local,
            sg_empresa_relacionamento
@@ -385,4 +385,4 @@ vlocal = '''
     WHERE ID_TIPO_LOCAL<>6
     AND cd_local_sap IS NOT NULL
     AND sg_empresa_relacionamento IS NOT NULL
-'''
+"""

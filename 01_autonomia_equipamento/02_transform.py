@@ -7,17 +7,23 @@
 #####################################################################################################################
 
 
-df_estoque_cd['COD_DEPOSITO'] = np.where(df_estoque_cd['COD_DEPOSITO'] == df_estoque_cd['COD_CENTRO'],
-                                         'NOVO',
-                                         df_estoque_cd['COD_DEPOSITO']
-                                        )
-df_estoque_cd['NUM_MATERIAL'] = df_estoque_cd['NUM_MATERIAL'].str.lstrip('0')
+df_estoque_cd["COD_DEPOSITO"] = np.where(
+    df_estoque_cd["COD_DEPOSITO"] == df_estoque_cd["COD_CENTRO"],
+    "NOVO",
+    df_estoque_cd["COD_DEPOSITO"],
+)
+df_estoque_cd["NUM_MATERIAL"] = df_estoque_cd["NUM_MATERIAL"].str.lstrip("0")
 
-#Reduzo os registros de estoque disponivel para economizar memória
-df_estoque_cd = \
-df_estoque_cd[(df_estoque_cd['NUM_MATERIAL'].isin(materiais)) \
-            & (df_estoque_cd['COD_DEPOSITO'].isin(depositos)) \
-            & (df_estoque_cd['COD_CENTRO'].isin(centros)) \
-            & (df_estoque_cd['QTD_ESTOQUE_DISPONIVEL'] > 0)].reset_index(drop=True)
+# Reduzo os registros de estoque disponivel para economizar memória
+df_estoque_cd = df_estoque_cd[
+    (df_estoque_cd["NUM_MATERIAL"].isin(materiais))
+    & (df_estoque_cd["COD_DEPOSITO"].isin(depositos))
+    & (df_estoque_cd["COD_CENTRO"].isin(centros))
+    & (df_estoque_cd["QTD_ESTOQUE_DISPONIVEL"] > 0)
+].reset_index(drop=True)
 
-df_estoque_cd = df_estoque_cd.groupby(['NUM_MATERIAL','COD_CENTRO','COD_DEPOSITO']).sum('QTD_ESTOQUE_DISPONIVEL').reset_index()
+df_estoque_cd = (
+    df_estoque_cd.groupby(["NUM_MATERIAL", "COD_CENTRO", "COD_DEPOSITO"])
+    .sum("QTD_ESTOQUE_DISPONIVEL")
+    .reset_index()
+)

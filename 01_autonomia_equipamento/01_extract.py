@@ -119,7 +119,7 @@ def query_material_campo():
 # Cria uma CTE (HISTORICO_EQPMNT) para determinar o LOCAL ANTERIOR de cada ID_EQUIPAMENTO     #
 # utilizando a função LAG na tabela PRD_BI_DW.DW_ATLP_HISTORICO_EQPMNT_NET para os registros  #
 # ativos (FL_STATUS_BI) dos últimos 3 anos da tabela acima.                                   #
-# Combina dados de movimentação e histórico das tabelas INN.FA_ATLP_MOV_TERM_OS e             # 
+# Combina dados de movimentação e histórico das tabelas INN.FA_ATLP_MOV_TERM_OS e             #
 # INN.FT_ATLP_MOV_TERM_OS com as informações calculadas na CTE.                               #
 # Retorna informações DETALHADAS sobre movimentações recentes dos últimos 112 dias,           #
 # incluindo: número de série, endereçável, operadora, contrato, e local anterior.             #
