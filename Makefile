@@ -4,6 +4,7 @@ install:
 
 test:
 		python -m pytest -vv test_hello.py
+		python -m pytest -vv 00_autonomia_carga_fria/04_test.py
 
 format:
 		black 00_autonomia_carga_fria/*.py
