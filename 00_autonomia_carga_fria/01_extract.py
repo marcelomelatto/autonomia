@@ -132,9 +132,12 @@ df_centros_manter = load_excel(file_path=DIM_CENTROS_MANTER_PATH, engine="openpy
 # Padronizar colunas para minúsculas
 df_centros_manter.columns = df_centros_manter.columns.str.lower()
 
-###############
-# dim_familia #
-###############
+#############################################################################
+# Carga fria    = DIM_FAMILIA.xlsx                                          #
+# Contém        = DSC_FAMILIA e STATUS_FAMILIA                              #
+# Objetivo      = Indicar ATIVO ou INATIVO de acordo com a família          #
+# Output        = df_dim_familia                                            #
+#############################################################################
 df_dim_familia = load_excel(
     file_path=DIM_FAMILIA_PATH,
     sheet_name="in",
