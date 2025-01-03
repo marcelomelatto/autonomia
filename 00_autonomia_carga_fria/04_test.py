@@ -7,40 +7,40 @@ import pytest
 #########################
 
 # df_dim_familia
-# 1. Testar se a base contém as colunas necessárias
+# t001. Testar se a base contém as colunas necessárias
 def test_colunas_existentes(df_dim_familia):
     expected_columns = {"dsc_familia", "status_familia"}
-    assert expected_columns.issubset(df_dim_familia.columns), "Colunas faltando na base!"
+    assert expected_columns.issubset(df_dim_familia.columns), "t001 = [df_dim_familia] = colunas faltando na base"
 
 # df_dim_familia
-# 2. Testar se não há valores nulos em "status_familia"
+# t002. Testar se não há valores nulos em "status_familia"
 def test_status_familia_sem_nulos(df_dim_familia):
-    assert df_dim_familia["status_familia"].notnull().all(), "Coluna 'status_familia' contém valores nulos!"
+    assert df_dim_familia["status_familia"].notnull().all(), "t002 = [df_dim_familia] = coluna 'status_familia' contem valores nulos"
 
 # df_dim_familia
-# 3. Testar se não há valores duplicados na coluna "dsc_familia"
+# t003. Testar se não há valores duplicados na coluna "dsc_familia"
 def test_dsc_familia_sem_duplicatas(df_dim_familia):
-    assert df_dim_familia["dsc_familia"].is_unique, "Coluna 'dsc_familia' contém valores duplicados!"
+    assert df_dim_familia["dsc_familia"].is_unique, "t003 = [df_dim_familia] = coluna 'dsc_familia' contem valores duplicados"
 
 # df_dim_familia
-# 4. Testar se todos os valores de "status_familia" são "ativo" ou "inativo"
+# t004. Testar se todos os valores de "status_familia" são "ativo" ou "inativo"
 def test_status_familia_valores_validos(df_dim_familia):
     valid_status = {"ATIVO", "INATIVO"}
     assert set(df_dim_familia["status_familia"].dropna().unique()).issubset(valid_status), \
-        "Coluna 'status_familia' contém valores inválidos!"
+        "t004 = [df_dim_familia] = coluna 'status_familia' contem valores invalidos"
 
 # df_dim_familia
-# 5. Testar se há pelo menos uma linha com "status_familia" como "ativo"
+# t005. Testar se há pelo menos uma linha com "status_familia" como "ativo"
 def test_pelo_menos_um_ativo(df_dim_familia):
     assert (df_dim_familia["status_familia"] == "ATIVO").any(), \
-        "Nenhuma família está com o status 'ativo'!"
+        "t005 = [df_dim_familia] = nenhuma familia com  status 'ativo'"
 
 # df_dim_familia
-# 6. Testar se não há valores nulos em "dsc_familia"
+# t006. Testar se não há valores nulos em "dsc_familia"
 def test_dsc_familia_sem_nulos(df_dim_familia):
-    assert df_dim_familia["dsc_familia"].notnull().all(), "Coluna 'dsc_familia' contém valores nulos!"
+    assert df_dim_familia["dsc_familia"].notnull().all(), "t006 = [df_dim_familia] = coluna 'dsc_familia' contem valores nulos"
 
 # df_dim_familia
-# 7. Testar se o dataframe tem ao menos uma linha
-def test_dataframe_nao_vazio(df_dim_familia):
-    assert not df_dim_familia.empty, "O DataFrame está vazio!"
+# t007. Testar se o dataframe tem ao menos 99 linhas
+def test_dataframe_min_linhas(df_dim_familia):
+    assert len(df_dim_familia) >= 99, "t007 = [df_dim_familia] = dataframe com menos de 99 linhas"

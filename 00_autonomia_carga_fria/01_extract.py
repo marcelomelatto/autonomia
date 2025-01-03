@@ -14,7 +14,9 @@ BASE_DIR = os.getenv(
     "/mnt/shared/ANALYTICS_LOGISTICAS/00.Bases de Dados/7.SHAREPOINT/Cadastros",
 )
 
-BASE_CDSW = os.getenv("BASE_CDSW", "/home/cdsw/autonomia/notebooks/")
+BASE_CDSW = os.getenv(
+    "BASE_CDSW",
+    "/home/cdsw/autonomia/notebooks/")
 
 # Paths para os arquivos
 DIM_CALENDARIZACAO_PATH = os.path.join(BASE_DIR, "CADASTRO_CALENDARIZACAO.xlsx")
