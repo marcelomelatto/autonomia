@@ -1,7 +1,9 @@
 # TRANSFORMAR 001 = df_dim_local_atlas
 
 # CÓDIGO DO MATEUS
-df_dim_local_atlas['COD_LOCAL_SAP'] = df_dim_local_atlas['COD_LOCAL_SAP'].str.lstrip('0')
+df_dim_local_atlas["COD_LOCAL_SAP"] = df_dim_local_atlas["COD_LOCAL_SAP"].str.lstrip(
+    "0"
+)
 
 centros1 = df_dim_local_atlas["COD_CENTRO_ABASTECIMENTO_1"].unique().tolist()
 centros2 = df_dim_local_atlas["COD_CENTRO_ABASTECIMENTO_2"].unique().tolist()
@@ -10,28 +12,11 @@ centros = list(set(centros1 + centros2))
 # TRANSFORMAR 002 = TIRAR DUPLICIDADE DF_DIM_FAMILIA POR DSC_FAMILIA
 
 # CÓDIGO DO MATEUS:
-#Depara de status das familias, indica se a familia é considerada como ATIVA ou INATIVA,
-#Caso a familia não esteja cadastrada no depara, considero por default o status ATIVO
-df_pontos_4 = df_pontos_4.merge(df_dim_familia.drop_duplicates(['DSC_FAMILIA']),
-                                on='DSC_FAMILIA',
-                                how='left'
-                               )[df_pontos_4.columns.tolist() + ['STATUS_FAMILIA']]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Depara de status das familias, indica se a familia é considerada como ATIVA ou INATIVA,
+# Caso a familia não esteja cadastrada no depara, considero por default o status ATIVO
+df_pontos_4 = df_pontos_4.merge(
+    df_dim_familia.drop_duplicates(["DSC_FAMILIA"]), on="DSC_FAMILIA", how="left"
+)[df_pontos_4.columns.tolist() + ["STATUS_FAMILIA"]]
 
 
 # CÓDIGO DO MATEUS:

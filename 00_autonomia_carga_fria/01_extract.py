@@ -14,15 +14,15 @@ BASE_DIR = os.getenv(
     "/mnt/shared/ANALYTICS_LOGISTICAS/00.Bases de Dados/7.SHAREPOINT/Cadastros",
 )
 
-BASE_CDSW = os.getenv(
-    "BASE_CDSW",
-    "/home/cdsw/autonomia/notebooks/")
+BASE_CDSW = os.getenv("BASE_CDSW", "/home/cdsw/autonomia/notebooks/")
 
 # Paths para os arquivos
 DIM_CALENDARIZACAO_PATH = os.path.join(BASE_DIR, "CADASTRO_CALENDARIZACAO.xlsx")
 DIM_CENTRO_DEPOSITO_PATH = os.path.join(BASE_DIR, "DIM_CENTRO_DEPOSITO.xlsx")
 DIM_CENTROS_MANTER_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")
-DIM_COMPATIBILIDADE_PATH = os.path.join(BASE_DIR, "CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx")
+DIM_COMPATIBILIDADE_PATH = os.path.join(
+    BASE_DIR, "CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx"
+)
 DIM_DEPOSITOS_EXCLUIR_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")
 DIM_FAMILIA_PATH = os.path.join(BASE_DIR, "DIM_FAMILIA.xlsx")
 DIM_LOCAL_ATLAS_PATH = os.path.join(BASE_DIR, "DIM_LOCAL_ATLAS.xlsx")
