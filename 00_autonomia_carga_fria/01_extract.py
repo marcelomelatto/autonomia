@@ -9,35 +9,33 @@ logging.basicConfig(
 )
 
 # Definir constantes para caminhos de arquivos
-#BASE_DIR = os.getenv(
+# BASE_DIR = os.getenv(
 #    "BASE_DIR",
 #   "/mnt/shared/ANALYTICS_LOGISTICAS/00.Bases de Dados/7.SHAREPOINT/Cadastros",
-#)
+# )
 #
-#BASE_CDSW = os.getenv("BASE_CDSW", "/home/cdsw/autonomia/notebooks/")
+# BASE_CDSW = os.getenv("BASE_CDSW", "/home/cdsw/autonomia/notebooks/")
 
 BASE_DIR = os.getenv(
     "BASE_DIR",
     "00_autonomia_arquivos",
 )
 
-BASE_CDSW = os.getenv(
-    "BASE_CDSW",
-    "00_autonomia_arquivos")
+BASE_CDSW = os.getenv("BASE_CDSW", "00_autonomia_arquivos")
 
 
 # Paths para os arquivos
-DIM_CALENDARIZACAO_PATH = os.path.join(BASE_DIR, "CADASTRO_CALENDARIZACAO.xlsx")            #OK
-DIM_CENTRO_DEPOSITO_PATH = os.path.join(BASE_DIR, "DIMENSAO_CENTRO_DEPOSITO.xlsx")          #OK
-#DIM_CENTROS_MANTER_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")            #Faltante
-DIM_COMPATIBILIDADE_PATH = os.path.join(BASE_DIR, "CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx")  #OK
-#DIM_DEPOSITOS_EXCLUIR_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")         #Faltante
-DIM_FAMILIA_PATH = os.path.join(BASE_DIR, "DIMENSAO_FAMILIA.xlsx")                          #OK
-DIM_LOCAL_ATLAS_PATH = os.path.join(BASE_DIR, "DIMENSAO_LOCAL_ATLAS.xlsx")                  #OK
-DIM_LOCAL_SAP_PATH = os.path.join(BASE_CDSW, "DIMENSAO_LOCAL_SAP.xlsx")                     #OK
-DIM_MATERIAL_PATH = os.path.join(BASE_DIR, "DIMENSAO_MATERIAL.xlsx")                        #OK
-DIM_RESPONSAVEL_PATH = os.path.join(BASE_DIR, "DIMENSAO_RESPONSAVEL.xlsx")                  #OK
-#DIM_SAZONALIDADE_PATH = os.path.join(BASE_DIR, "sazonalidade_decomposta.xlsx")             #Faltante
+DIM_CALENDARIZACAO_PATH = os.path.join(BASE_DIR, "CADASTRO_CALENDARIZACAO.xlsx")  
+DIM_CENTRO_DEPOSITO_PATH = os.path.join(BASE_DIR, "DIMENSAO_CENTRO_DEPOSITO.xlsx")
+# DIM_CENTROS_MANTER_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")            #Faltante
+DIM_COMPATIBILIDADE_PATH = os.path.join(BASE_DIR, "CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx")
+# DIM_DEPOSITOS_EXCLUIR_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")         #Faltante
+DIM_FAMILIA_PATH = os.path.join(BASE_DIR, "DIMENSAO_FAMILIA.xlsx")
+DIM_LOCAL_ATLAS_PATH = os.path.join(BASE_DIR, "DIMENSAO_LOCAL_ATLAS.xlsx")
+DIM_LOCAL_SAP_PATH = os.path.join(BASE_CDSW, "DIMENSAO_LOCAL_SAP.xlsx")
+DIM_MATERIAL_PATH = os.path.join(BASE_DIR, "DIMENSAO_MATERIAL.xlsx")
+DIM_RESPONSAVEL_PATH = os.path.join(BASE_DIR, "DIMENSAO_RESPONSAVEL.xlsx")
+# DIM_SAZONALIDADE_PATH = os.path.join(BASE_DIR, "sazonalidade_decomposta.xlsx")             #Faltante
 
 
 # Função genérica para ler arquivos Excel
@@ -116,8 +114,9 @@ df_dim_material.columns = df_dim_material.columns.str.lower()
 # dim_local_sap #
 #################
 dimensao_local_sap = load_excel(
-    file_path=DIM_LOCAL_SAP_PATH, sheet_name="in", engine="openpyxl"
-)
+    file_path=DIM_LOCAL_SAP_PATH,
+    sheet_name="in"
+    )
 
 # Padronizar colunas para minúsculas
 dimensao_local_sap.columns = dimensao_local_sap.columns.str.lower()
@@ -125,22 +124,22 @@ dimensao_local_sap.columns = dimensao_local_sap.columns.str.lower()
 #####################
 # depositos_excluir #
 #####################
-#df_depositos_excluir = load_excel(
+# df_depositos_excluir = load_excel(
 #    file_path=DIM_DEPOSITOS_EXCLUIR_PATH,
 #    sheet_name="DEPOSITO_EXCLUIR",
 #    engine="openpyxl",
-#)
+# )
 
 # Padronizar colunas para minúsculas
-#df_depositos_excluir.columns = df_depositos_excluir.columns.str.lower()
+# df_depositos_excluir.columns = df_depositos_excluir.columns.str.lower()
 
 ##################
 # centros_manter #
 ##################
-#df_centros_manter = load_excel(file_path=DIM_CENTROS_MANTER_PATH, engine="openpyxl")
+# df_centros_manter = load_excel(file_path=DIM_CENTROS_MANTER_PATH, engine="openpyxl")
 
 # Padronizar colunas para minúsculas
-#df_centros_manter.columns = df_centros_manter.columns.str.lower()
+# df_centros_manter.columns = df_centros_manter.columns.str.lower()
 
 #############################################################################
 # Carga fria    = DIM_FAMILIA.xlsx                                          #
