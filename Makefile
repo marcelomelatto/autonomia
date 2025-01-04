@@ -1,21 +1,32 @@
-IGNORED_FILES := 00_autonomia_carga_fria/01_extract.py
+# Caminho para o ambiente virtual
+VENV_PATH = .venv
 
-install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+# Cria o ambiente virtual
+.venv:
+	python3 -m venv $(VENV_PATH)
+	$(VENV_PATH)/bin/pip install --upgrade pip
+	$(VENV_PATH)/bin/pip install -r requirements.txt
 
-test:
-	python -m pytest -vv test_hello.py
-	python -m pytest -vv $(filter-out $(IGNORED_FILES), 00_autonomia_carga_fria/04_test.py)
+# Instalar dependências
+install: .venv
+	$(VENV_PATH)/bin/pip install --upgrade pip
+	$(VENV_PATH)/bin/pip install -r requirements.txt
 
-format:
-	black $(filter-out $(IGNORED_FILES), 00_autonomia_carga_fria/*.py)
-	black 01_autonomia_equipamento/*.py
-	black 02_autonomia_consumo/*.py
-	black 03_autonomia_transito/*.py
-	black 04_autonomia_modelo/*.py
+# Testes
+test: .venv
+	$(VENV_PATH)/bin/python -m pytest -vv test_hello.py
 
-lint:
-	pylint --disable=R,C hello.py
+# Formatação de código
+format: .venv
+	$(VENV_PATH)/bin/black 00_autonomia_carga_fria/*.py
+	$(VENV_PATH)/bin/black 01_autonomia_equipamento/*.py
+	$(VENV_PATH)/bin/black 02_autonomia_consumo/*.py
+	$(VENV_PATH)/bin/black 03_autonomia_transito/*.py
+	$(VENV_PATH)/bin/black 04_autonomia_modelo/*.py
 
+# Linting
+lint: .venv
+	$(VENV_PATH)/bin/pylint --disable=R,C hello.py
+
+# Comando geral
 all: install lint test
