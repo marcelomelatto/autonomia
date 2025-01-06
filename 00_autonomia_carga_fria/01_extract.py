@@ -11,17 +11,23 @@ logging.basicConfig(
 # Definir constantes para caminhos de arquivos
 # BASE_DIR = os.getenv(
 #    "BASE_DIR",
-#   "/mnt/shared/ANALYTICS_LOGISTICAS/00.Bases de Dados/7.SHAREPOINT/Cadastros",
+#    "/mnt/shared/ANALYTICS_LOGISTICAS/00.Bases de Dados/7.SHAREPOINT/Cadastros"
 # )
 #
-# BASE_CDSW = os.getenv("BASE_CDSW", "/home/cdsw/autonomia/notebooks/")
+# BASE_CDSW = os.getenv(
+#   "BASE_CDSW",
+#   "/home/cdsw/autonomia/notebooks/"
+# )
 
 BASE_DIR = os.getenv(
     "BASE_DIR",
-    "00_autonomia_arquivos",
+    "00_autonomia_arquivos"
 )
 
-BASE_CDSW = os.getenv("BASE_CDSW", "00_autonomia_arquivos")
+BASE_CDSW = os.getenv(
+    "BASE_CDSW",
+    "00_autonomia_arquivos"
+)
 
 
 # Paths para os arquivos
@@ -60,9 +66,12 @@ def load_excel(file_path, sheet_name=None, dtype=None):
 
 # Carregar DataFrames
 
-###################
-# dim_local_atlas #
-###################
+#############################################################################
+# Carga fria    = DIMENSAO_LOCAL_ATLAS.xlsx                                 #
+# Contém        =                                                           #
+# Objetivo      =                                                           #
+# Output        = df_dim_local_atlas                                        #
+#############################################################################
 df_dim_local_atlas = load_excel(
     file_path=DIM_LOCAL_ATLAS_PATH,
     sheet_name="in",
@@ -72,11 +81,15 @@ df_dim_local_atlas = load_excel(
 # Padronizar colunas para minúsculas
 df_dim_local_atlas.columns = df_dim_local_atlas.columns.str.lower()
 
-####################################
-# cadastro_compatibilidade_familia #
-####################################
+#############################################################################
+# Carga fria    = CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx                     #
+# Contém        =                                                           #
+# Objetivo      =                                                           #
+# Output        = df_compatibilidade                                        #
+#############################################################################
 df_compatibilidade = load_excel(
     file_path=DIM_COMPATIBILIDADE_PATH,
+    sheet_name="in",
     dtype={
         "TIPO_LOCAL": np.str_,
         "TIPO_ATENDIMENTO": np.str_,
@@ -93,9 +106,13 @@ df_compatibilidade = load_excel(
 # Padronizar colunas para minúsculas
 df_compatibilidade.columns = df_compatibilidade.columns.str.lower()
 
-################
-# dim_material #
-################
+
+#############################################################################
+# Carga fria    = DIMENSAO_MATERIAL.xlsx                                    #
+# Contém        =                                                           #
+# Objetivo      =                                                           #
+# Output        = df_dim_material                                           #
+#############################################################################
 df_dim_material = load_excel(
     file_path=DIM_MATERIAL_PATH,
     sheet_name="in",
@@ -110,39 +127,22 @@ df_dim_material = load_excel(
 # Padronizar colunas para minúsculas
 df_dim_material.columns = df_dim_material.columns.str.lower()
 
-#################
-# dim_local_sap #
-#################
-dimensao_local_sap = load_excel(
+#############################################################################
+# Carga fria    = DIMENSAO_LOCAL_SAP.xlsx                                   #
+# Contém        =                                                           #
+# Objetivo      =                                                           #
+# Output        = df_dim_local_sap                                          #
+#############################################################################
+df_dim_local_sap = load_excel(
     file_path=DIM_LOCAL_SAP_PATH,
     sheet_name="in"
     )
 
 # Padronizar colunas para minúsculas
-dimensao_local_sap.columns = dimensao_local_sap.columns.str.lower()
-
-#####################
-# depositos_excluir #
-#####################
-# df_depositos_excluir = load_excel(
-#    file_path=DIM_DEPOSITOS_EXCLUIR_PATH,
-#    sheet_name="DEPOSITO_EXCLUIR",
-#    engine="openpyxl",
-# )
-
-# Padronizar colunas para minúsculas
-# df_depositos_excluir.columns = df_depositos_excluir.columns.str.lower()
-
-##################
-# centros_manter #
-##################
-# df_centros_manter = load_excel(file_path=DIM_CENTROS_MANTER_PATH, engine="openpyxl")
-
-# Padronizar colunas para minúsculas
-# df_centros_manter.columns = df_centros_manter.columns.str.lower()
+df_dim_local_sap.columns = df_dim_local_sap.columns.str.lower()
 
 #############################################################################
-# Carga fria    = DIM_FAMILIA.xlsx                                          #
+# Carga fria    = DIMENSAO_FAMILIA.xlsx                                     #
 # Contém        = DSC_FAMILIA e STATUS_FAMILIA                              #
 # Objetivo      = Indicar ATIVO ou INATIVO de acordo com a família          #
 # Output        = df_dim_familia                                            #
@@ -156,17 +156,25 @@ df_dim_familia = load_excel(
 # Padronizar colunas para minúsculas
 df_dim_familia.columns = df_dim_familia.columns.str.lower()
 
-#######################
-# dim_centro_deposito #
-#######################
+
+#############################################################################
+# Carga fria    = DIMENSAO_CENTRO_DEPOSITO.xlsx                             #
+# Contém        =                                                           #
+# Objetivo      =                                                           #
+# Output        = df_dim_centro_deposito                                    #
+#############################################################################
 df_dim_centro_deposito = load_excel(file_path=DIM_CENTRO_DEPOSITO_PATH, sheet_name="in")
 
 # Padronizar colunas para minúsculas
 df_dim_centro_deposito.columns = df_dim_centro_deposito.columns.str.lower()
 
-###################
-# dim_responsavel #
-###################
+
+#############################################################################
+# Carga fria    = DIMENSAO_RESPONSAVEL.xlsx                                 #
+# Contém        =                                                           #
+# Objetivo      =                                                           #
+# Output        = df_dim_responsavel                                        #
+#############################################################################
 df_dim_responsavel = load_excel(
     file_path=DIM_RESPONSAVEL_PATH,
     sheet_name="IN",
@@ -183,9 +191,12 @@ df_dim_responsavel = load_excel(
 df_dim_responsavel.columns = df_dim_responsavel.columns.str.lower()
 
 
-##################
-# calendarizacao #
-##################
+#############################################################################
+# Carga fria    = CADASTRO_CALENDARIZACAO.xlsx                              #
+# Contém        =                                                           #
+# Objetivo      =                                                           #
+# Output        = df_calendarizacao                                         #
+#############################################################################
 df_calendarizacao = load_excel(file_path=DIM_CALENDARIZACAO_PATH, sheet_name="in")
 
 # Padronizar colunas para minúsculas
