@@ -19,19 +19,12 @@ logging.basicConfig(
 #   "/home/cdsw/autonomia/notebooks/"
 # )
 
-BASE_DIR = os.getenv(
-    "BASE_DIR",
-    "00_autonomia_arquivos"
-)
-
-BASE_CDSW = os.getenv(
-    "BASE_CDSW",
-    "00_autonomia_arquivos"
-)
+BASE_DIR = os.getenv("BASE_DIR", "00_autonomia_arquivos")
+BASE_CDSW = os.getenv("BASE_CDSW", "00_autonomia_arquivos")
 
 
 # Paths para os arquivos
-DIM_CALENDARIZACAO_PATH = os.path.join(BASE_DIR, "CADASTRO_CALENDARIZACAO.xlsx")  
+DIM_CALENDARIZACAO_PATH = os.path.join(BASE_DIR, "CADASTRO_CALENDARIZACAO.xlsx")
 DIM_CENTRO_DEPOSITO_PATH = os.path.join(BASE_DIR, "DIMENSAO_CENTRO_DEPOSITO.xlsx")
 # DIM_CENTROS_MANTER_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")            #Faltante
 DIM_COMPATIBILIDADE_PATH = os.path.join(BASE_DIR, "CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx")
@@ -81,6 +74,7 @@ df_dim_local_atlas = load_excel(
 # Padronizar colunas para minúsculas
 df_dim_local_atlas.columns = df_dim_local_atlas.columns.str.lower()
 
+
 #############################################################################
 # Carga fria    = CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx                     #
 # Contém        =                                                           #
@@ -127,16 +121,14 @@ df_dim_material = load_excel(
 # Padronizar colunas para minúsculas
 df_dim_material.columns = df_dim_material.columns.str.lower()
 
+
 #############################################################################
 # Carga fria    = DIMENSAO_LOCAL_SAP.xlsx                                   #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_dim_local_sap                                          #
 #############################################################################
-df_dim_local_sap = load_excel(
-    file_path=DIM_LOCAL_SAP_PATH,
-    sheet_name="in"
-    )
+df_dim_local_sap = load_excel(file_path=DIM_LOCAL_SAP_PATH, sheet_name="in")
 
 # Padronizar colunas para minúsculas
 df_dim_local_sap.columns = df_dim_local_sap.columns.str.lower()
