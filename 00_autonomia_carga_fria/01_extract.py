@@ -3,27 +3,22 @@ import pandas as pd
 import numpy as np
 import logging
 
-# Configurar logging
+######################
+# Configurar logging #
+######################
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# Definir constantes para caminhos de arquivos
-# BASE_DIR = os.getenv(
-#    "BASE_DIR",
-#    "/mnt/shared/ANALYTICS_LOGISTICAS/00.Bases de Dados/7.SHAREPOINT/Cadastros"
-# )
-#
-# BASE_CDSW = os.getenv(
-#   "BASE_CDSW",
-#   "/home/cdsw/autonomia/notebooks/"
-# )
-
+################################################
+# Definir constantes para caminhos de arquivos #
+################################################
 BASE_DIR = os.getenv("BASE_DIR", "00_autonomia_arquivos")
 BASE_CDSW = os.getenv("BASE_CDSW", "00_autonomia_arquivos")
 
-
-# Paths para os arquivos
+##########################
+# Paths para os arquivos #
+##########################
 DIM_CALENDARIZACAO_PATH = os.path.join(BASE_DIR, "CADASTRO_CALENDARIZACAO.xlsx")
 DIM_CENTRO_DEPOSITO_PATH = os.path.join(BASE_DIR, "DIMENSAO_CENTRO_DEPOSITO.xlsx")
 # DIM_CENTROS_MANTER_PATH = os.path.join(BASE_CDSW, "CENTROS_MANTER_v20-12.xlsx")            #Faltante
@@ -36,8 +31,9 @@ DIM_MATERIAL_PATH = os.path.join(BASE_DIR, "DIMENSAO_MATERIAL.xlsx")
 DIM_RESPONSAVEL_PATH = os.path.join(BASE_DIR, "DIMENSAO_RESPONSAVEL.xlsx")
 # DIM_SAZONALIDADE_PATH = os.path.join(BASE_DIR, "sazonalidade_decomposta.xlsx")             #Faltante
 
-
-# Função genérica para ler arquivos Excel
+###########################################
+# Função genérica para ler arquivos Excel #
+###########################################
 def load_excel(file_path, sheet_name=None, dtype=None):
     """Carrega um arquivo Excel e retorna um DataFrame.
 
@@ -56,11 +52,12 @@ def load_excel(file_path, sheet_name=None, dtype=None):
     logging.info(f"Carregando arquivo: {file_path}")
     return pd.read_excel(file_path, sheet_name=sheet_name, dtype=dtype)
 
-
-# Carregar DataFrames
+#######################
+# Carregar DataFrames #
+#######################
 
 #############################################################################
-# Carga fria    = DIMENSAO_LOCAL_ATLAS.xlsx                                 #
+# Input         = dimensao_local_atlas.xlsx                                 #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_dim_local_atlas                                        #
@@ -76,7 +73,7 @@ df_dim_local_atlas.columns = df_dim_local_atlas.columns.str.lower()
 
 
 #############################################################################
-# Carga fria    = CADASTRO_COMPATIBILIDADE_FAMILIA.xlsx                     #
+# Input         = cadastro_compatibilidade_familia.xlsx                     #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_compatibilidade                                        #
@@ -102,7 +99,7 @@ df_compatibilidade.columns = df_compatibilidade.columns.str.lower()
 
 
 #############################################################################
-# Carga fria    = DIMENSAO_MATERIAL.xlsx                                    #
+# Input         = dimensao_material.xlsx                                    #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_dim_material                                           #
@@ -123,7 +120,7 @@ df_dim_material.columns = df_dim_material.columns.str.lower()
 
 
 #############################################################################
-# Carga fria    = DIMENSAO_LOCAL_SAP.xlsx                                   #
+# Input         = dimensao_local_sap.xlsx                                   #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_dim_local_sap                                          #
@@ -133,10 +130,11 @@ df_dim_local_sap = load_excel(file_path=DIM_LOCAL_SAP_PATH, sheet_name="in")
 # Padronizar colunas para minúsculas
 df_dim_local_sap.columns = df_dim_local_sap.columns.str.lower()
 
+
 #############################################################################
-# Carga fria    = DIMENSAO_FAMILIA.xlsx                                     #
-# Contém        = DSC_FAMILIA e STATUS_FAMILIA                              #
-# Objetivo      = Indicar ATIVO ou INATIVO de acordo com a família          #
+# Input         = dimensao_familia.xlsx                                     #
+# Contém        = dsc_familia e status_familia                              #
+# Objetivo      = Indicar ativo ou inativo de acordo com a família          #
 # Output        = df_dim_familia                                            #
 #############################################################################
 df_dim_familia = load_excel(
@@ -150,7 +148,7 @@ df_dim_familia.columns = df_dim_familia.columns.str.lower()
 
 
 #############################################################################
-# Carga fria    = DIMENSAO_CENTRO_DEPOSITO.xlsx                             #
+# Input         = dimensao_centro_deposito.xlsx                             #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_dim_centro_deposito                                    #
@@ -162,7 +160,7 @@ df_dim_centro_deposito.columns = df_dim_centro_deposito.columns.str.lower()
 
 
 #############################################################################
-# Carga fria    = DIMENSAO_RESPONSAVEL.xlsx                                 #
+# Input         = dimensao_responsavel.xlsx                                 #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_dim_responsavel                                        #
@@ -184,7 +182,7 @@ df_dim_responsavel.columns = df_dim_responsavel.columns.str.lower()
 
 
 #############################################################################
-# Carga fria    = CADASTRO_CALENDARIZACAO.xlsx                              #
+# Input         = cadastro_calendarizacao.xlsx                              #
 # Contém        =                                                           #
 # Objetivo      =                                                           #
 # Output        = df_calendarizacao                                         #
