@@ -3,12 +3,8 @@ VENV_PATH = .venv
 PYTHON = $(VENV_PATH)/bin/python
 PIP = $(VENV_PATH)/bin/pip
 
-# Instalação do Git LFS
-install-lfs:
-	git lfs install
-
 # Cria o ambiente virtual e instala dependências
-.venv: install-lfs
+.venv:
 	python3 -m venv $(VENV_PATH)
 	$(PIP) install --upgrade pip
 	$(PIP) install -r requirements.txt
@@ -16,7 +12,7 @@ install-lfs:
 # Instalar dependências (não há necessidade de repetir a instalação)
 install: .venv
 
-# Testes
+# Testes (garante que o ambiente virtual esteja pronto)
 test: .venv
 	$(PYTHON) -m pytest -vv test_hello.py
 
@@ -28,7 +24,7 @@ format: .venv
 	                       03_autonomia_transito/*.py \
 	                       04_autonomia_modelo/*.py
 
-# Linting
+# Linting (garante que o ambiente virtual esteja pronto)
 lint: .venv
 	$(VENV_PATH)/bin/pylint --disable=R,C hello.py
 
