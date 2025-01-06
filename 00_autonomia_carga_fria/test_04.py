@@ -1,6 +1,7 @@
 import pandas as pd
 import pytest
 
+
 #########################
 # df_dim_local_atlas    #
 # testes automatizados  #
@@ -165,4 +166,4 @@ def test_dsc_familia_sem_nulos(df_dim_familia):
 def test_dataframe_min_linhas(df_dim_familia):
     assert (
         len(df_dim_familia) >= 90
-    ), "t007 = [df_dim_familia] = dataframe com menos de 90 linhas"
+    ), "t007 = [df_dim_familia] = dataframe com menos de 90 linhas_"
