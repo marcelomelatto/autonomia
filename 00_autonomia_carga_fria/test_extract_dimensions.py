@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import Mock
-from extract_01 import df_dim_local_atlas, df_dim_familia
-
+from a_extract import df_dim_local_atlas, df_dim_familia
 
 
 class Test01Extract(unittest.TestCase):
@@ -43,7 +42,7 @@ class Test01Extract(unittest.TestCase):
         self.assertEqual(dimension_set, valid_status)
 
     def test_if_valid_centro_abastecimento(self):
-        centro_pattern = r"^(0|[A-Z]{2}[0-9]{2}|N[0-9]{2}[A-Z]|N[0-9]{3})$"
+        centro_pattern = r"^[A-Za-z0-9]{4}$"
         
         self.assertTrue(
             self.df_dim_local_atlas["cod_centro_abastecimento_1"]

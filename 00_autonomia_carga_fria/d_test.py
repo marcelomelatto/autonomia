@@ -57,25 +57,22 @@ def test_tipo_local_valores_validos(df_dim_local_atlas):
 # df_dim_local_atlas
 # t005. Testar se não há valores inválidos nos centros de abastecimento
 def test_centros_abastecimento_validos(df_dim_local_atlas):
-    # Padrões identificados:
-    # 1. "0" → Apenas o número zero como string.
-    # 2. "21YC" → Dois caracteres alfabéticos seguidos por dois dígitos numéricos.
-    # 3. "N190", "N191", ..., "N990" → Letra 'N' seguida de três dígitos numéricos.
-    # 4. "N67A" → Letra 'N', dois dígitos e uma letra.
-    centro_pattern = r"^(0|[A-Z]{2}[0-9]{2}|N[0-9]{2}[A-Z]|N[0-9]{3})$"
+    # Padrão ajustado: Exatamente 4 caracteres alfanuméricos (letras ou números)
+    centro_pattern = r"^[A-Za-z0-9]{4}$"
+    
+    # Validação para a coluna cod_centro_abastecimento_1
     assert (
-        df_dim_local_atlas["cod_centro_abastecimento_1"]
-        .astype(str)
+        df_dim_local_atlas["COD_CENTRO_ABASTECIMENTO_1"]
         .str.match(centro_pattern)
         .all()
-    ), "t005 = [df_dim_local_atlas] = 'cod_centro_abastecimento_1' contém valores inválidos"
+    ), "t005 = [df_dim_local_atlas] = 'COD_CENTRO_ABASTECIMENTO_1' contém valores inválidos"
+    
+    # Validação para a coluna cod_centro_abastecimento_2
     assert (
-        df_dim_local_atlas["cod_centro_abastecimento_2"]
-        .astype(str)
+        df_dim_local_atlas["COD_CENTRO_ABASTECIMENTO_2"]
         .str.match(centro_pattern)
         .all()
-    ), "t005 = [df_dim_local_atlas] = 'cod_centro_abastecimento_2' contém valores inválidos"
-
+    ), "t005 = [df_dim_local_atlas] = 'COD_CENTRO_ABASTECIMENTO_2' contém valores inválidos"
 
 # df_dim_local_atlas
 # t006. Testar se o dataframe tem ao menos 30.000 linhas

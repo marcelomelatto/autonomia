@@ -65,7 +65,7 @@ def load_excel(file_path, sheet_name=None, dtype=None):
 df_dim_local_atlas = load_excel(
     file_path=DIM_LOCAL_ATLAS_PATH,
     sheet_name="in",
-    dtype={"ID_LOCAL": np.int32, "COD_LOCAL_SAP": np.str_},
+    dtype=str  
 )
 
 # Padronizar colunas para minúsculas
