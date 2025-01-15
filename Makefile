@@ -18,11 +18,11 @@ test: .venv
 
 # Formatação de código
 format: .venv
-	$(VENV_PATH)/bin/black 00_autonomia_carga_fria/*.py \
-	                       01_autonomia_equipamento/*.py \
-	                       02_autonomia_consumo/*.py \
-	                       03_autonomia_transito/*.py \
-	                       04_autonomia_modelo/*.py
+	$(VENV_PATH)/bin/black b_autonomia_carga_fria/test_carga_fria.py \
+	                       c_autonomia_equipamento/*.py \
+	                       d_autonomia_consumo/*.py \
+	                       e_autonomia_transito/*.py \
+	                       f_autonomia_modelo/*.py
 
 # Linting (garante que o ambiente virtual esteja pronto)
 lint: .venv
