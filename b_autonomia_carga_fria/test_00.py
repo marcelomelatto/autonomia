@@ -1,6 +1,8 @@
 import pandas as pd
 import pytest
 
+from a_extract import carrega_df_dim_local_atlas
+
 #########################
 # df_dim_local_atlas    #
 # testes automatizados  #
@@ -9,7 +11,8 @@ import pytest
 
 # df_dim_local_atlas
 # t001. Testar se a base contém as colunas necessárias
-def test_colunas_existentes(df_dim_local_atlas):
+def test_colunas_existentes():
+    df = carrega_df_dim_local_atlas()
     expected_columns = {
         "cod_local",
         "dsc_local",
@@ -19,7 +22,7 @@ def test_colunas_existentes(df_dim_local_atlas):
         "empresa",
     }
     assert expected_columns.issubset(
-        df_dim_local_atlas.columns
+        df.columns
     ), "t001 = [df_dim_local_atlas] = colunas faltando na base"
 
 

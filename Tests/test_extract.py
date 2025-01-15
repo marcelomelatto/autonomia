@@ -10,7 +10,6 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
 from ETL.Extract import Extract
 from unittest.mock import MagicMock
 
-
 print(sys.path)
 
 def test_execute_query(mocker):
