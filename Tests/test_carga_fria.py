@@ -1,16 +1,12 @@
 import pandas as pd
 import pytest
+import sys
+import os
 
-from a_extract import (
-    carrega_df_dim_local_atlas,
-    carrega_df_compatibilidade,
-    carrega_df_dim_material,
-    carrega_df_dim_local_sap,
-    carrega_df_dim_familia,
-    carrega_df_dim_centro_deposito,
-    carrega_df_dim_responsavel,
-    carrega_df_calendarizacao,
-)
+
+
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "../autonomia/")))
+from b_autonomia_carga_fria.a_extract import carrega_df_dim_local_atlas, carrega_df_dim_familia
 
 #########################
 # df_dim_local_atlas    #
