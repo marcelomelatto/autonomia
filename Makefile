@@ -18,7 +18,7 @@ test: .venv
 
 # Formatação de código
 format: .venv
-	$(VENV_PATH)/bin/black b_autonomia_carga_fria/test_carga_fria.py \
+	$(VENV_PATH)/bin/black b_autonomia_carga_fria/*.py\
 	                       c_autonomia_equipamento/*.py \
 	                       d_autonomia_consumo/*.py \
 	                       e_autonomia_transito/*.py \
