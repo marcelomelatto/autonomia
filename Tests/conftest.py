@@ -7,7 +7,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
     Gera uma tabela detalhada de resultados dos testes e faz append no arquivo de log geral.
     """
     results = []
-    log_file = "ETL/general_log.log"  # Nome do arquivo de log geral
+    log_file = "test_results.log"  # Nome do arquivo de log geral
 
     # Captura todos os relatórios de testes em uma única estrutura
     all_reports = terminalreporter.stats.get('passed', []) + \

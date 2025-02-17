@@ -13,10 +13,9 @@ logging.basicConfig(
 ################################################
 # Definir constantes para caminhos de arquivos #
 ################################################
-# BASE_DIR = os.getenv("BASE_DIR", "a_autonomia_arquivos")
-# BASE_CDSW = os.getenv("BASE_CDSW", "a_autonomia_arquivos")
-BASE_DIR = os.getenv("BASE_DIR", os.path.join(os.path.expanduser("~"), "Documents", "Projetos", "01_autonomia", "autonomia", "a_autonomia_arquivos"))
-BASE_CDSW = os.getenv("BASE_CDSW", os.path.join(os.path.expanduser("~"), "Documents", "Projetos", "01_autonomia", "autonomia", "a_autonomia_arquivos"))
+BASE_DIR = os.getenv("BASE_DIR", "/workspaces/autonomia/a_autonomia_arquivos")
+BASE_CDSW = os.getenv("BASE_CDSW", "/workspaces/autonomia/a_autonomia_arquivos")
+
 
 ##########################
 # Paths para os arquivos #

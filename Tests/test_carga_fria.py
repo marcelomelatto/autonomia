@@ -5,7 +5,7 @@ import os
 
 
 
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "../autonomia/")))
+# sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "../autonomia/")))
 from b_autonomia_carga_fria.a_extract import carrega_df_dim_local_atlas, carrega_df_dim_familia
 
 #########################
